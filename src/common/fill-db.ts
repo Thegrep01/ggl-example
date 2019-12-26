@@ -29,4 +29,5 @@ knex('users')
     } else {
       throw err;
     }
-  });
+  })
+  .then(() => console.log('DONE'));
