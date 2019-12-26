@@ -1,0 +1,12 @@
+type Author {
+  id: ID!
+  name: String!
+}
+type Book {
+  id: ID!
+  title: String
+  author: Author!
+}
+type Query {
+  exampleOne: [Book]
+}
