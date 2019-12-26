@@ -3,10 +3,15 @@ import { knex } from 'src/common/db';
 
 @Injectable()
 export class ExampleService {
-  public async getBooks() {
-    console.log('=====> select all books');
+  public async getBooks(projection?: string[]) {
+    console.log(`=====> select ${projection} from books`);
+    console.log(
+      await knex('books')
+        .select(projection)
+        .limit(5),
+    );
     return await knex('books')
-      .select()
+      .select(projection)
       .limit(5);
   }
   public async getAuthor(id: number) {
@@ -15,5 +20,13 @@ export class ExampleService {
       .select()
       .where('id', id)
       .first();
+  }
+  public async getAuthorsByIds(ids: number[], projection: string[]) {
+    console.log(
+      `=====> select ${projection} from users where users.id in ${ids}`,
+    );
+    return await knex('users')
+      .select(projection)
+      .whereIn('id', ids);
   }
 }

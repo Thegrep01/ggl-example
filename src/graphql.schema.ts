@@ -6,12 +6,12 @@
 
 /* tslint:disable */
 export class Author {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
 }
 
 export class Book {
-    id: string;
+    id?: string;
     title?: string;
     author: Author;
 }
